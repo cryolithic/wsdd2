@@ -25,6 +25,8 @@ install:	wsdd2
 	install wsdd2.8 $(DESTDIR)/$(MANINSTALLDIR)/man8/wsdd2.8
 	install -d $(DESTDIR)/lib/systemd/system
 	install -m 0644 wsdd2.service $(DESTDIR)/lib/systemd/system
+	install -d $(sysconfdir)/wsdd2
+	install -m 0644 wsdd2.conf $(sysconfdir)/wsdd2
 
 clean:
 	rm -f wsdd2 $(OBJFILES)

@@ -164,13 +164,13 @@ static struct {
 	const char *key, *_default;
 	char *value;
 } bootinfo[] = {
-	{ .key	= "vendor:",	._default = "NETGEAR"},
-	{ .key	= "model:",	._default = "ReadyNAS 314"},
+	{ .key	= "vendor:",	._default = "ROCKSTOR"},
+	{ .key	= "model:",	._default = "Custom Nas"},
 	{ .key	= "serial:",	._default = "0"},
-	{ .key	= "sku:",	._default = "RN314"},
-	{ .key	= "vendorurl:",	._default = "http://www.netgear.com"},
-	{ .key	= "modelurl:",	._default = "http://www.netgear.com"},
-	{ .key	= "presentationurl:",	._default = "http://www.netgear.com"},
+	{ .key	= "sku:",	._default = "0"},
+	{ .key	= "vendorurl:",	._default = "http://www.rockstor.com"},
+	{ .key	= "modelurl:",	._default = "http://www.rockstor.com"},
+	{ .key	= "presentationurl:",	._default = "http://www.rockstor.com"},
 	{}
 };
 
@@ -253,7 +253,7 @@ static const char *get_getresp(const char *key)
 static bool getresp_inited;
 static void init_getresp(void)
 {
-	FILE *fp = fopen("/proc/sys/dev/boot/info", "r");
+	FILE *fp = fopen("/etc/wsdd2/wsdd2.conf", "r");
 
 	if (fp) {
 		char buf[80];
@@ -748,7 +748,7 @@ static int send_http_resp_header(int fd, struct endpoint *ep,
 {
 	const char resp_hdr_fmt[] =
 		"HTTP/1.1 %s\r\n"
-		"Server: NETGEAR WSD Server\r\n"
+		"Server: ROCKSTOR NAS Server\r\n"
 		"Date: %s\r\n"
 		"Connection: close\r\n"
 		"Content-Type: application/soap+xml\r\n"
