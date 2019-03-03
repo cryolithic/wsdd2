@@ -59,7 +59,17 @@ static char wsd_sequence[UUIDLEN], wsd_endpoint[UUIDLEN];
 
 static void set_seed(void)
 {
+#ifdef __SYSCONFDIR
+        char *conf = NULL;
+        FILE *fp = NULL;
+        if(asprintf(&conf, "%s%s", __SYSCONFDIR, "/machine-id"))
+        {
+                fp = fopen(conf, "r");
+                free(conf);
+        }
+#else
 	FILE *fp = fopen("/etc/machine-id", "r");
+#endif
 	unsigned long seed;
 
 	time((time_t *)&seed);
@@ -94,7 +104,17 @@ static void uuid_random(char *uuid, size_t len)
 
 static void uuid_endpoint(char *uuid, size_t len)
 {
+#ifdef __SYSCONFDIR
+        char *conf = NULL;
+        FILE *fp = NULL;
+        if(asprintf(&conf, "%s%s", __SYSCONFDIR, "/machine-id"))
+        {
+                fp = fopen(conf, "r");
+                free(conf);
+        }
+#else
 	FILE *fp = fopen("/etc/machine-id", "r");
+#endif
 	int c, i = 0;
 
 	if (!fp)
@@ -253,8 +273,18 @@ static const char *get_getresp(const char *key)
 static bool getresp_inited;
 static void init_getresp(void)
 {
-	FILE *fp = fopen("/etc/wsdd2/wsdd2.conf", "r");
 
+#ifdef __SYSCONFDIR
+	char *conf = NULL;
+	FILE *fp = NULL;
+	if(asprintf(&conf, "%s%s", __SYSCONFDIR, "/wsdd2/wsdd2.conf"))
+	{
+		fp = fopen(conf, "r");
+		free(conf);
+	}
+#else
+	FILE *fp = fopen("/etc/wsdd2/wsdd2.conf", "r");
+#endif
 	if (fp) {
 		char buf[80];
 
