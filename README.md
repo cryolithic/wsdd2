@@ -1,4 +1,11 @@
 # wsdd2
+Forked from kochinc https://github.com/kochinc/wsdd2
+
+I've updated to make a few changes to defaults, and to use a conf file in /etc/wsdd2 rather than the proc file that Netgear uses, which doesn't exist on the different distros I tested.
+
+Everything below is from upstream
+
+
 WSD/LLMNR Discovery/Name Service Daemon
 
 With Microsoft turning off SMB1 feature completely on Windwos 10, any Samba shares on the 
