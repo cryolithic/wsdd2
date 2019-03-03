@@ -3,6 +3,19 @@ Forked from kochinc https://github.com/kochinc/wsdd2
 
 I've updated to make a few changes to defaults, and to use a conf file in /etc/wsdd2 rather than the proc file that Netgear uses, which doesn't exist on the different distros I tested.
 
+Everything should be pretty straight forward to get running.
+
+Clone/download the source
+
+make
+If that succeeds,
+make install
+edit your /etc/wsdd2/wsdd2.conf to your liking.
+service wsdd2 start
+
+Your server should now show up in windows without SMBv1 
+
+
 Everything below is from upstream
 
 
